@@ -11,7 +11,7 @@ import java.net.URL
 
 
 class Day4 extends AnyFunSuite with Matchers {
-  test("day4 - 1") {
+  test("part-1") {
     val resource: URL = getClass.getResource("/day4/input.txt")
     Files[IO].readUtf8Lines(Path(resource.getPath))
       .map(parseWinningAndChosenNumbers)
@@ -27,7 +27,7 @@ class Day4 extends AnyFunSuite with Matchers {
       .unsafeRunSync()
   }
 
-  test("day4 - 2") {
+  test("part-2") {
     val resource: URL = getClass.getResource("/day4/input.txt")
     Files[IO].readUtf8Lines(Path(resource.getPath))
       .map(parseWinningAndChosenNumbers)
