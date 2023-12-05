@@ -34,17 +34,17 @@ class Day4 extends AnyFunSuite with Matchers {
       // count winning numbers per card
       .map { case (w, ns) => ns.count(w.contains) }
       // each card is considered once to start with; sum of all cards is 0
-      .scan((Stream.constant(1), 0)) { case ((copies, sum), cardScore) =>
+      .scan((Stream.constant(1), 0)) { case ((copies, totalCards), cardScore) =>
         val cardCopies = copies.head.compile.toList.head
         // for each card copy we win 1 card of each of the following `cardScore` cards.
         val wonCards = Stream.constant(cardCopies).take(cardScore.toLong) ++ Stream.constant(0)
         // add the newly won cards to the existing copies
         val newCopies = copies.tail.zipWith(wonCards)(_ + _)
         // keep track of the total number of cards scanned
-        val newSum = sum + cardCopies
-        (newCopies, newSum)
+        val newTotalCards = totalCards + cardCopies
+        (newCopies, newTotalCards)
       }
-      .fold(0) { case (_, (_, n)) => n }
+      .fold(0) { case (_, (_, totalCards)) => totalCards }
       .evalTap(IO.println)
       .compile
       .drain
