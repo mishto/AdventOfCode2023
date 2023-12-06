@@ -10,7 +10,8 @@ libraryDependencies ++= Seq(
   "org.typelevel" %% "cats-effect" % "3.3.14",
   "org.scalatest" %% "scalatest" % "3.2.13" % "test",
   "co.fs2" %% "fs2-core" % "3.6.1",
-  "co.fs2" %% "fs2-io" % "3.6.1"
+  "co.fs2" %% "fs2-io" % "3.6.1",
+  "org.typelevel" %% "spire" % "0.18.0",
 )
 
 lazy val advent = (project in file("."))
